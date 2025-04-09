@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShoesStore</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        header {
+            background-color: #5a2d0c;
+            padding: 1rem;
+            color: white;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .carousel-container {
+            background-color: #5a2d0c;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .carousel {
+            position: relative;
+            width: 700px;
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .carousel-text {
+            position: absolute;
+            top:30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+        }
+
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #717171;
+        }
+
+        .title {
+            text-align: center;
+            margin: 30px 0 10px;
+            font-size: 2rem;
+            color: #4b2e17;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: #4b2e17;
+            padding: 20px;
+        }
+
+        .product {
+            background: white;
+            margin: 10px;
+            padding: 10px;
+            width: 220px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .product p {
+            margin: 8px 0;
+        }
+
+        .product button {
+            padding: 8px 15px;
+            background-color: #4b2e17;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+        .header_1 {
+            background-color: #4b2e1f;
+            padding: 20px;
+
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .products-title {
+            text-align: center;
+            background-color: #5c2e00;
+            padding: 10px;
+            color: white;
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .product-grid {
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #e07d13;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: #4b2e1f;
+            color: white;
+            width: 250px;
+            margin: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 10px;
+        }
+
+        .add-cart-btn {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .add-cart-btn:hover {
+            background-color: #e68900;
+        }
+
+
+
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #4b2e1f;
+            color: #333;
+            padding: 40px 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image {
+            flex: 1 1 400px;
+            max-width: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .about-content {
+            flex: 1 1 400px;
+            background-color: white;
+            padding: 30px;
+            margin-left: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #4b2e1f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #633a28;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin-right: 12px;
+            color: #4b2e1f;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        footer {
+            background-color: #4b2e1f;
+            color: #f3f4f6;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.875rem;
+            text-decoration: underline;
+            text-decoration-style: solid;
+            border-top: 1px solid #374151;
+
+        }
+
+            @media (max-width: 768px) {
+                .nav a {
+           display: none;
+        }
+                .about-section {
+                    flex-direction: column;
+                }
+
+                .about-content {
+                    margin-left: 0;
+                    margin-top: 20px;
+                }
+            }
+
+
+
+            .about-image {
+                flex: 1 1 400px;
+                padding: 10px;
+            }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+                border-radius: 6px;
+            }
+
+            .about-content {
+                flex: 1 1 500px;
+                background-color: white;
+                color: black;
+                padding: 30px;
+                border-radius: 6px;
+                margin-top: 20px;
+            }
+
+            .about-content h2 {
+                text-align: center;
+                text-decoration: underline;
+                /* text-decoration-style: solid; */
+                font-size: 28px;
+                margin-bottom: 20px;
+                letter-spacing: 2px;
+            }
+
+            .about-content p {
+                font-size: 14px;
+                line-height: 1.6;
+                margin-bottom: 25px;
+            }
+
+            .shop-button {
+                display: block;
+                width: fit-content;
+                margin: 0 auto 20px;
+                background-color: #4b2e17;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+
+            .shop-button:hover {
+                background-color: #5c3a22;
+            }
+
+            .social-icons {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .social-icons img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-icons a {
+                color: black;
+                margin: 0 10px;
+                text-decoration: none;
+            }
+
+            @media screen and (max-width: 768px) {
+                .about-section {
+                    flex-direction: column;
+                }
+
+                .about-content {
+                    margin-top: 20px;
+                }
+            }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav">
+            <h1>ShoesStore</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#products">Products</a>
+                <a href="#">Contact Us</a>
+                <a href="#about">About Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Carousel Section -->
+    <section class="carousel-container">
+        <div class="carousel">
+            <img id="carouselImage" src="./images/img_3.jpg" alt="Carousel Image" />
+            <div class="carousel-text">FROM OUT STORE TO YOUR FEET</div>
+        </div>
+        <div class="dots">
+            <span class="dot active" onclick="changeSlide(0)"></span>
+            <span class="dot" onclick="changeSlide(1)"></span>
+            <span class="dot" onclick="changeSlide(2)"></span>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <div class="header_1">ShoesStore</div>
+    <div class="products-title">Our Products</div>
+
+    <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <img src="./images/men-shoes.jpg" alt="Blue Canvas Shoes">
+            <div class="product-info">
+                <p>Name: Blue Canvas Shoes</p>
+                <p>Price: Rs. 500</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <img src="./images/white_sports.jpg" alt="White Sports Shoes">
+            <div class="product-info">
+                <p>Name: White Sports Shoes</p>
+                <p>Price: Rs. 700</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <img src="./images/black_formal.jpg" alt="Black Formal Shoes">
+            <div class="product-info">
+                <p>Name: Black Formal Lace Shoes</p>
+                <p>Price: Rs. 600</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <img src="./images/brown_formal.jpg" alt="Brown Formal Shoes">
+            <div class="product-info">
+                <p>Name: Brown Formal Shoes</p>
+                <p>Price: Rs. 600</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <img src="./images/img_3.jpg" alt="Football Shoes">
+            <div class="product-info">
+                <p>Name: Football Shoes</p>
+                <p>Price: Rs. 500</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+            <img src="./images/img_4.jpg" alt="Tan Formal Shoes">
+            <div class="product-info">
+                <p>Name: Tan Formal Shoes</p>
+                <p>Price: Rs. 650</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+            <img src="./images/img_4.jpg" alt="Black Sports Shoes">
+            <div class="product-info">
+                <p>Name: Black Sports Shoes</p>
+                <p>Price: Rs. 550</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772" alt="Shiny Brown Shoes">
+            <div class="product-info">
+                <p>Name: Shiny Brown Shoes</p>
+                <p>Price: Rs. 680</p>
+                <button class="add-cart-btn">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="header_1">ShoesStore</div>
+    <section class="about-section">
+        <!-- Left Image -->
+        <div class="about-image">
+            <img src="./images/img_1.jpg" alt="Shoe Image" />
+        </div>
+
+        <!-- Right Content -->
+        <div class="about-content">
+            <h2>ABOUT US</h2>
+            <p>
+                For each one of those shoe sweethearts out there, ‘ShoeStore’ offers the one-stop
+                goal to pick the correct match of footwear. To satisfy the affection for shoes, we
+                offer heaps of alternatives from driving footwear marks, all under one rooftop.
+                Gone are the days when you needed to go from store to store to locate the correct
+                style and size for yourself. At ‘ShoeStore’, you can locate a vast accumulation of
+                dashing footwear in all sizes and styles, all inside a couple of snaps.
+            </p>
+            <a href="#" class="shop-button">Let's Shop</a>
+
+            <!-- Social Icons -->
+            <div class="social-icons">
+                <a href="#"><img src="./images/facebook.png" alt=""></a>
+                <a href="#"><img src="./images/instagram.png"></a>
+                <a href="#"><img src="./images/pinterest.png"></a>
+                <a href="#"><img src="./images/twitter.png"></a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        &copy; 2025 ShoesStore. All Rights Reserved.
+    </footer>
+
+    <!-- Carousel Script -->
+    <script>
+        const images = [
+            "./images/img_3.jpg",
+            "./images/men-shoes.jpg",
+            "./images/white_sports.jpg"
+        ];
+
+        let currentSlide = 0;
+
+        function changeSlide(index) {
+            const carouselImage = document.getElementById("carouselImage");
+            const dots = document.getElementsByClassName("dot");
+
+            if (!carouselImage || !dots[index]) return;
+
+            carouselImage.src = images[index];
+
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
+            dots[index].classList.add("active");
+            currentSlide = index;
+        }
+
+        // Optional: Auto-play feature
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % images.length;
+            changeSlide(nextSlide);
+        }, 3000);
+    </script>
+
+</body>
+
+</html>
